@@ -3,6 +3,7 @@ package ru.job4j.accident.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import ru.job4j.accident.repository.AccidentMem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,7 @@ import java.util.List;
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
-        List<String> accidents = new ArrayList<>();
-        for (int i = 1; i <= 10; ++i) {
-            accidents.add("Нарушение" + i);
-        }
-        model.addAttribute("accidents", accidents);
-        model.addAttribute("user", "Egor Geraskin");
+        model.addAttribute("map", new AccidentMem().getAll());
         return "index";
     }
 }

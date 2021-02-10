@@ -17,7 +17,6 @@
     <title>Accident</title>
 </head>
 <body>
-Hello : ${user}
 <div class="container pt-3">
     <div class="row">
         <div class="card" style="width: 100%">
@@ -28,12 +27,22 @@ Hello : ${user}
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Нарушение</th>
+                            <th scope="col">#</th>
+                            <th scope="col">id</th>
+                            <th scope="col">name</th>
+                            <th scope="col">text</th>
+                            <th scope="col">address</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${accidents}" var="ac">
-                            <tr><td>${ac}</td></tr>
+                        <c:forEach items="${map}" var="entry" varStatus="loopCounter">
+                            <tr>
+                                <th>${loopCounter.count}</th>
+                                <td>${entry.value.id}</td>
+                                <td>${entry.value.name}</td>
+                                <td>${entry.value.text}</td>
+                                <td>${entry.value.address}</td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
