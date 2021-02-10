@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Egor Geraskin(yegeraskin13@gmail.com)
  * @version 1.0
@@ -13,6 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
+        List<String> accidents = new ArrayList<>();
+        for (int i = 1; i <= 10; ++i) {
+            accidents.add("Нарушение" + i);
+        }
+        model.addAttribute("accidents", accidents);
+        model.addAttribute("user", "Egor Geraskin");
         return "index";
     }
 }
