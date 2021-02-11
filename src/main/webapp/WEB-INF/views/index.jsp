@@ -35,13 +35,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${map}" var="entry" varStatus="loopCounter">
+                        <c:forEach items="${acc}" var="item" varStatus="loopCounter">
                             <tr>
                                 <th>${loopCounter.count}</th>
-                                <td>${entry.value.id}</td>
-                                <td>${entry.value.name}</td>
-                                <td>${entry.value.text}</td>
-                                <td>${entry.value.address}</td>
+                                <td>${item.id}</td>
+                                <td>${item.name}</td>
+                                <td>${item.text}</td>
+                                <td>${item.address}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
