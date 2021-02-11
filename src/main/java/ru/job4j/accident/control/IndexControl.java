@@ -17,7 +17,7 @@ import java.util.List;
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("acc", new AccidentMem().getAll());
+        model.addAttribute("acc", AccidentMem.instOf().getAll());
         return "index";
     }
 }
