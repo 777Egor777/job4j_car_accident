@@ -19,7 +19,7 @@
 <body>
 <div class="container pt-3">
     <div class="row">
-        <a href="<c:url value='/create'/>">Добавить инцидент</a>
+        <a class="btn btn-primary" href="<c:url value='/create'/>">Добавить инцидент</a>
     </div>
     <div class="row">
         <div class="card" style="width: 100%">

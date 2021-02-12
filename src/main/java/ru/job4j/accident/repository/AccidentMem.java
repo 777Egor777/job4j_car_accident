@@ -6,6 +6,7 @@ import ru.job4j.accident.model.Accident;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Egor Geraskin(yegeraskin13@gmail.com)
@@ -15,13 +16,13 @@ import java.util.Map;
 @Repository
 public class AccidentMem {
     private final Map<Integer, Accident> accidents = new HashMap<>();
-    private int curKey = 0;
+    private final AtomicInteger key = new AtomicInteger(0);
 
     private AccidentMem() {
-        accidents.put(++curKey, new Accident(1, "Egor", "dtp", "Saratov"));
-        accidents.put(++curKey, new Accident(2, "Ivan", "text", "Moscow"));
-        accidents.put(++curKey, new Accident(3, "Nick", "speed", "NY"));
-        accidents.put(++curKey, new Accident(4, "Alex", "parking", "Seattle"));
+        accidents.put(key.incrementAndGet(), new Accident(key.get(), "Egor", "dtp", "Saratov"));
+        accidents.put(key.incrementAndGet(), new Accident(key.get(), "Ivan", "text", "Moscow"));
+        accidents.put(key.incrementAndGet(), new Accident(key.get(), "Nick", "speed", "NY"));
+        accidents.put(key.incrementAndGet(), new Accident(key.get(), "Alex", "parking", "Seattle"));
     }
 
     private static final class Holder {
@@ -37,7 +38,7 @@ public class AccidentMem {
     }
 
     public void create(Accident accident) {
-        accident.setId(++curKey);
+        accident.setId(key.incrementAndGet());
         accidents.put(accident.getId(), accident);
     }
 }
