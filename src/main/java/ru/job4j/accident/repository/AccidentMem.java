@@ -38,7 +38,13 @@ public class AccidentMem {
     }
 
     public void create(Accident accident) {
-        accident.setId(key.incrementAndGet());
+        if (accident.getId() == -1) {
+            accident.setId(key.incrementAndGet());
+        }
         accidents.put(accident.getId(), accident);
+    }
+
+    public Accident findById(int id) {
+        return accidents.get(id);
     }
 }

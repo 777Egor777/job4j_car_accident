@@ -9,7 +9,7 @@ import java.util.StringJoiner;
  * @since 10.02.2021
  */
 public class Accident {
-    private int id;
+    private int id = -1;
     private String name;
     private String text;
     private String address;

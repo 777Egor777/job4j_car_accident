@@ -35,6 +35,7 @@
                             <th scope="col">name</th>
                             <th scope="col">text</th>
                             <th scope="col">address</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +46,11 @@
                                 <td>${item.name}</td>
                                 <td>${item.text}</td>
                                 <td>${item.address}</td>
+                                <td>
+                                    <span>
+                                        <a href="<c:url value='/update?id=${item.id}'/>">Редактировать</a>
+                                    </span>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
