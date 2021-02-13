@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentTypes;
 
 /**
  * @author Egor Geraskin(yegeraskin13@gmail.com)
@@ -17,13 +18,16 @@ import ru.job4j.accident.repository.AccidentMem;
 @Controller
 public class AccidentControl {
     private final AccidentMem accidents;
+    private final AccidentTypes types;
 
-    public AccidentControl(AccidentMem accidents) {
+    public AccidentControl(AccidentMem accidents, AccidentTypes types) {
         this.accidents = accidents;
+        this.types = types;
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", types.getAll());
         return "accident/create";
     }
 
