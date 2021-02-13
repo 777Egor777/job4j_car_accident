@@ -18,19 +18,11 @@ public class AccidentMem {
     private final Map<Integer, Accident> accidents = new HashMap<>();
     private final AtomicInteger key = new AtomicInteger(0);
 
-    private AccidentMem() {
+    public AccidentMem() {
         accidents.put(key.incrementAndGet(), new Accident(key.get(), "Egor", "dtp", "Saratov"));
         accidents.put(key.incrementAndGet(), new Accident(key.get(), "Ivan", "text", "Moscow"));
         accidents.put(key.incrementAndGet(), new Accident(key.get(), "Nick", "speed", "NY"));
         accidents.put(key.incrementAndGet(), new Accident(key.get(), "Alex", "parking", "Seattle"));
-    }
-
-    private static final class Holder {
-        public static final AccidentMem INSTANCE = new AccidentMem();
-    }
-
-    public static AccidentMem instOf() {
-        return Holder.INSTANCE;
     }
 
     public Collection<Accident> getAll() {

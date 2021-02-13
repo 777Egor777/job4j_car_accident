@@ -16,6 +16,11 @@ import ru.job4j.accident.repository.AccidentMem;
  */
 @Controller
 public class AccidentControl {
+    private final AccidentMem accidents;
+
+    public AccidentControl(AccidentMem accidents) {
+        this.accidents = accidents;
+    }
 
     @GetMapping("/create")
     public String create() {
@@ -24,13 +29,13 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        AccidentMem.instOf().create(accident);
+        accidents.create(accident);
         return "redirect:/";
     }
 
     @GetMapping("/update")
     public String update(@RequestParam("id") int id, Model model) {
-        model.addAttribute("accident", AccidentMem.instOf().findById(id));
+        model.addAttribute("accident", accidents.findById(id));
         return "accident/update";
     }
 }

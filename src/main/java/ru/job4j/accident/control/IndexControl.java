@@ -5,9 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.accident.repository.AccidentMem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Egor Geraskin(yegeraskin13@gmail.com)
  * @version 1.0
@@ -15,9 +12,15 @@ import java.util.List;
  */
 @Controller
 public class IndexControl {
+    private final AccidentMem accidents;
+
+    public IndexControl(AccidentMem accidents) {
+        this.accidents = accidents;
+    }
+
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("acc", AccidentMem.instOf().getAll());
+        model.addAttribute("acc", accidents.getAll());
         return "index";
     }
 }
