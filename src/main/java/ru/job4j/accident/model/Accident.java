@@ -1,5 +1,6 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -10,8 +11,12 @@ import java.util.StringJoiner;
  * @version 1.0
  * @since 10.02.2021
  */
+@Entity
+@Table(name = "accident")
 public class Accident {
-    private int id = -1;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
     private String text;
     private String address;

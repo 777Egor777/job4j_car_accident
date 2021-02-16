@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.0
  * @since 10.02.2021
  */
-@Repository
+//@Repository
 public class AccidentMem {
     private final Map<Integer, Accident> accidents = new HashMap<>();
     private final AtomicInteger key = new AtomicInteger(0);
