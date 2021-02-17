@@ -34,9 +34,7 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
-        service.setRulesForAccident(accident, ids);
-        service.addTypeToAccident(accident);
-        service.addAccident(accident);
+        service.addAccident(accident, ids);
         return "redirect:/";
     }
 

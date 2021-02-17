@@ -36,18 +36,12 @@ public class AccidentService {
         return rules.getAll();
     }
 
-    public void addAccident(Accident acc) {
-        store.save(acc);
-    }
-
-    public void addTypeToAccident(Accident acc) {
+    public void addAccident(Accident acc, String[] ruleIds) {
         acc.setType(types.getById(acc.getType().getId()));
-    }
-
-    public void setRulesForAccident(Accident accident, String[] ruleIds) {
         for (String idStr: ruleIds) {
-            accident.addRule(rules.getById(Integer.parseInt(idStr)));
+            acc.addRule(rules.getById(Integer.parseInt(idStr)));
         }
+        store.save(acc);
     }
 
     public Accident getAccidentById(int id) {
