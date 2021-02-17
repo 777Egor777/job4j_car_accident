@@ -11,11 +11,11 @@ import java.util.StringJoiner;
  * @version 1.0
  * @since 10.02.2021
  */
-@Entity
-@Table(name = "accident")
+//@Entity
+//@Table(name = "accident")
 public class Accident {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;

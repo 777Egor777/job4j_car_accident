@@ -3,9 +3,11 @@ package ru.job4j.accident.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentJdbcTemplate;
-import ru.job4j.accident.repository.AccidentMem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Egor Geraskin(yegeraskin13@gmail.com)
@@ -14,9 +16,9 @@ import ru.job4j.accident.repository.AccidentMem;
  */
 @Controller
 public class IndexControl {
-    private final AccidentHibernate accidents;
+    private final AccidentJdbcTemplate accidents;
 
-    public IndexControl(AccidentHibernate accidents) {
+    public IndexControl(AccidentJdbcTemplate accidents) {
         this.accidents = accidents;
     }
 

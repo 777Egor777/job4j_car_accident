@@ -43,4 +43,14 @@ public class AccidentControl {
         model.addAttribute("accident", service.getAccidentById(id));
         return "accident/update";
     }
+
+    @PostMapping("update2")
+    public String upd2(@RequestParam("id") int id, @ModelAttribute Accident accident) {
+        Accident acc = service.getAccidentById(id);
+        acc.setName(accident.getName());
+        acc.setText(accident.getText());
+        acc.setAddress(accident.getAddress());
+        service.updateAccident(acc);
+        return "redirect:/";
+    }
 }
