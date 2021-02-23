@@ -1,4 +1,4 @@
-package ru.job4j.accident.repository;
+package ru.job4j.accident.repository.data;
 
 import org.springframework.data.repository.CrudRepository;
 import ru.job4j.accident.model.Accident;
@@ -8,5 +8,5 @@ import ru.job4j.accident.model.Accident;
  * @version 1.0
  * @since 17.02.2021
  */
-//public interface AccidentRepository extends CrudRepository<Accident, Integer> {
-//}
+public interface AccidentRep extends CrudRepository<Accident, Integer> {
+}

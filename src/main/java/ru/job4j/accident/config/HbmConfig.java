@@ -19,7 +19,7 @@ import java.util.Properties;
  * @version 1.0
  * @since 16.02.2021
  */
-@Configuration
+//@Configuration
 @PropertySource("classpath:app.properties")
 @EnableTransactionManagement
 public class HbmConfig {

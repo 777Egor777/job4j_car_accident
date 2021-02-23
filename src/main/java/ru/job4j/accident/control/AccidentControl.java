@@ -50,7 +50,7 @@ public class AccidentControl {
         acc.setName(accident.getName());
         acc.setText(accident.getText());
         acc.setAddress(accident.getAddress());
-        service.updateAccident(acc);
+        service.addAccident(acc);
         return "redirect:/";
     }
 }

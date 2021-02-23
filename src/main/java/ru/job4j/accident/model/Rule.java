@@ -18,9 +18,6 @@ public class Rule {
     private int id;
     private String name;
 
-    @ManyToMany(mappedBy = "rules", fetch = FetchType.EAGER)
-    private List<Accident> accidents = new ArrayList<>();
-
     public Rule() {
     }
 
@@ -53,14 +50,6 @@ public class Rule {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Accident> getAccidents() {
-        return accidents;
-    }
-
-    public void setAccidents(List<Accident> accidents) {
-        this.accidents = accidents;
     }
 
     @Override

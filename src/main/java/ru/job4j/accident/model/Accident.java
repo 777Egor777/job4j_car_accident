@@ -24,9 +24,6 @@ public class Accident {
 
     @ManyToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.EAGER)
-    @JoinTable(name = "accident_rules",
-    joinColumns = @JoinColumn(name = "accident_id"),
-    inverseJoinColumns = @JoinColumn(name = "rules_id"))
     private List<Rule> rules;
 
     public Accident(int id) {

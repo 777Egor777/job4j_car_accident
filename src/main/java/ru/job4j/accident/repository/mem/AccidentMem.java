@@ -1,11 +1,9 @@
-package ru.job4j.accident.repository;
+package ru.job4j.accident.repository.mem;
 
-import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.repository.interfaces.AccidentRep;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -14,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 10.02.2021
  */
 //@Repository
-public class AccidentMem {
+public class AccidentMem implements AccidentRep {
     private final Map<Integer, Accident> accidents = new HashMap<>();
     private final AtomicInteger key = new AtomicInteger(0);
 
@@ -25,18 +23,22 @@ public class AccidentMem {
         accidents.put(key.incrementAndGet(), new Accident(key.get(), "Alex", "parking", "Seattle"));
     }
 
-    public Collection<Accident> getAll() {
-        return accidents.values();
-    }
-
-    public void create(Accident accident) {
+    @Override
+    public Accident add(Accident accident) {
         if (accident.getId() == -1) {
             accident.setId(key.incrementAndGet());
         }
         accidents.put(accident.getId(), accident);
+        return accident;
     }
 
-    public Accident findById(int id) {
-        return accidents.get(id);
+    @Override
+    public Accident get(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Accident> getAll() {
+        return new ArrayList<>(accidents.values());
     }
 }
