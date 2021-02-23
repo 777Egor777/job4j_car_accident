@@ -1,27 +1,33 @@
 package ru.job4j.accident.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.StringJoiner;
+import java.util.*;
 
 /**
  * @author Egor Geraskin(yegeraskin13@gmail.com)
  * @version 1.0
  * @since 10.02.2021
  */
-//@Entity
-//@Table(name = "accident")
+@Entity
+@Table(name = "accident")
 public class Accident {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
     private String address;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private AccidentType type;
-    private Set<Rule> rules = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.EAGER)
+    @JoinTable(name = "accident_rules",
+    joinColumns = @JoinColumn(name = "accident_id"),
+    inverseJoinColumns = @JoinColumn(name = "rules_id"))
+    private List<Rule> rules;
 
     public Accident(int id) {
         this.id = id;
@@ -83,15 +89,18 @@ public class Accident {
         this.type = type;
     }
 
-    public Set<Rule> getRules() {
+    public List<Rule> getRules() {
         return rules;
     }
 
-    public void setRules(Set<Rule> rules) {
+    public void setRules(List<Rule> rules) {
         this.rules = rules;
     }
 
     public void addRule(Rule rule) {
+        if (rules == null) {
+            rules = new ArrayList<>();
+        }
         rules.add(rule);
     }
 
@@ -135,6 +144,8 @@ public class Accident {
                 .add("name='" + name + "'")
                 .add("text='" + text + "'")
                 .add("address='" + address + "'")
+                .add("type=" + type)
+                .add("rules=" + rules)
                 .toString();
     }
 }

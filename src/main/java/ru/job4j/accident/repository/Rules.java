@@ -13,7 +13,7 @@ import java.util.Map;
  * @version 1.0
  * @since 15.02.2021
  */
-@Repository
+//@Repository
 public class Rules {
     private final Map<Integer, Rule> rules = new HashMap<>();
 

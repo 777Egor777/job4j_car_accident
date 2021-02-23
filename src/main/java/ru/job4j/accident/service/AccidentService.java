@@ -4,11 +4,10 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentJdbcTemplate;
-import ru.job4j.accident.repository.AccidentTypes;
-import ru.job4j.accident.repository.Rules;
+import ru.job4j.accident.repository.AccidentHibernate;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Egor Geraskin(yegeraskin13@gmail.com)
@@ -17,34 +16,36 @@ import java.util.Collection;
  */
 @Service
 public class AccidentService {
-    private final AccidentJdbcTemplate store;
-    private final AccidentTypes types;
-    private final Rules rules;
+    private final AccidentHibernate store;
 
-    public AccidentService(AccidentJdbcTemplate store, AccidentTypes types, Rules rules) {
+    public AccidentService(AccidentHibernate store) {
         this.store = store;
-        this.types = types;
-        this.rules = rules;
     }
 
     public Collection<AccidentType> getALlTypes() {
-        return types.getAll();
+        return store.getAll(AccidentType.class);
     }
 
     public Collection<Rule> getAllRules() {
-        return rules.getAll();
+        return store.getAllRules();
+    }
+
+    public List<Accident> getAllAccidents() {
+        return store.getAllAccidents();
     }
 
     public void addAccident(Accident acc, String[] ruleIds) {
-        acc.setType(types.getById(acc.getType().getId()));
         for (String idStr: ruleIds) {
-            acc.addRule(rules.getById(Integer.parseInt(idStr)));
+            Rule rule = store.findById(Rule.class, Integer.parseInt(idStr));
+            System.out.println("Rule: " + rule);
+            acc.addRule(rule);
         }
+        System.out.println("\n\n\n\nACCIDENT:\n" + acc + "\n\n\n\n\n");
         store.save(acc);
     }
 
     public Accident getAccidentById(int id) {
-        return store.findById(id);
+        return store.findById(Accident.class, id);
     }
 
     public void updateAccident(Accident acc) {

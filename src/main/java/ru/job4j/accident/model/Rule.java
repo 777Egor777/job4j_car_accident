@@ -1,5 +1,8 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -7,10 +10,27 @@ import java.util.Objects;
  * @version 1.0
  * @since 15.02.2021
  */
+@Entity
+@Table(name = "rules")
 public class Rule {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    @ManyToMany(mappedBy = "rules", fetch = FetchType.EAGER)
+    private List<Accident> accidents = new ArrayList<>();
+
+    public Rule() {
+    }
+
+    public Rule(int id) {
+        this.id = id;
+    }
+
+    public Rule(String name) {
+        this.name = name;
+    }
 
     public static Rule of(int id, String name) {
         Rule rule = new Rule();
@@ -33,6 +53,14 @@ public class Rule {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Accident> getAccidents() {
+        return accidents;
+    }
+
+    public void setAccidents(List<Accident> accidents) {
+        this.accidents = accidents;
     }
 
     @Override

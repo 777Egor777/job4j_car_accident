@@ -12,7 +12,7 @@ import java.util.Map;
  * @version 1.0
  * @since 13.02.2021
  */
-@Repository
+//@Repository
 public class AccidentTypes {
     private final Map<Integer, AccidentType> types = new HashMap<>();
 
