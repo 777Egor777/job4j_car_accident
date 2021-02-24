@@ -30,7 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .dataSource(ds);
+                .dataSource(ds)
+                .usersByUsernameQuery("select username, password, enabled from users "
+                + "where username = ?")
+                .authoritiesByUsernameQuery("select u.username, a.authority "
+                + "from authorities as a, users as u "
+                + "where u.username = ? and u.authority_id = a.id");
 //                .withUser(User.withUsername("egor")
 //                              .password(passwordEncoder().encode("123456"))
 //                              .roles("USER"))
@@ -47,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login")
+                .antMatchers("/login", "/reg")
                 .permitAll()
                 .antMatchers("/**")
                 .hasAnyRole("ADMIN", "USER")

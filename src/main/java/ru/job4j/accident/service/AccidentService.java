@@ -2,15 +2,10 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.model.AccidentType;
-import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.data.AccidentRep;
-import ru.job4j.accident.repository.data.AccidentTypeRep;
-import ru.job4j.accident.repository.data.RuleRep;
+import ru.job4j.accident.model.*;
+import ru.job4j.accident.repository.data.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,11 +18,15 @@ public class AccidentService {
     private final AccidentRep accidentRep;
     private final AccidentTypeRep accidentTypeRep;
     private final RuleRep ruleRep;
+    private final UserRep users;
+    private final AuthorityRep auths;
 
-    public AccidentService(AccidentRep accidentRep, AccidentTypeRep accidentTypeRep, RuleRep ruleRep) {
+    public AccidentService(AccidentRep accidentRep, AccidentTypeRep accidentTypeRep, RuleRep ruleRep, UserRep users, AuthorityRep auths) {
         this.accidentRep = accidentRep;
         this.accidentTypeRep = accidentTypeRep;
         this.ruleRep = ruleRep;
+        this.users = users;
+        this.auths = auths;
     }
 
     @Transactional
@@ -63,9 +62,20 @@ public class AccidentService {
         }
         return addAccident(acc);
     }
+
     @Transactional
     public Accident getAccidentById(int id) {
         return accidentRep.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public void saveUser(User user) {
+        users.save(user);
+    }
+
+    @Transactional
+    public Authority findAuthorityByName(String name) {
+        return auths.findByAuthority("ROLE_USER");
     }
 
 }
