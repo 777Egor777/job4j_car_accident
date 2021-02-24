@@ -16,25 +16,25 @@ import javax.sql.DataSource;
  * @since 16.02.2021
  */
 //@Configuration
-@PropertySource("classpath:app.properties")
-@EnableTransactionManagement
-public class JdbcConfig {
-
-    @Bean
-    public DataSource ds(@Value("${jdbc.driver}") String driver,
-                         @Value("${jdbc.url}") String url,
-                         @Value("${jdbc.username}") String username,
-                         @Value("${jdbc.password}") String password) {
-        BasicDataSource ds = new BasicDataSource();
-        ds.setDriverClassName(driver);
-        ds.setUrl(url);
-        ds.setUsername(username);
-        ds.setPassword(password);
-        return ds;
-    }
-
-    @Bean
-    public JdbcTemplate jdbc(DataSource ds) {
-        return new JdbcTemplate(ds);
-    }
-}
+//@PropertySource("classpath:app.properties")
+//@EnableTransactionManagement
+//public class JdbcConfig {
+//
+//    @Bean
+//    public DataSource ds(@Value("${jdbc.driver}") String driver,
+//                         @Value("${jdbc.url}") String url,
+//                         @Value("${jdbc.username}") String username,
+//                         @Value("${jdbc.password}") String password) {
+//        BasicDataSource ds = new BasicDataSource();
+//        ds.setDriverClassName(driver);
+//        ds.setUrl(url);
+//        ds.setUsername(username);
+//        ds.setPassword(password);
+//        return ds;
+//    }
+//
+//    @Bean
+//    public JdbcTemplate jdbc(DataSource ds) {
+//        return new JdbcTemplate(ds);
+//    }
+//}

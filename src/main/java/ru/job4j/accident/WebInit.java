@@ -22,7 +22,7 @@ public class WebInit implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext context =
                 new AnnotationConfigWebApplicationContext();
         context.register(WebConfig.class, DataConfig.class, SecurityConfig.class);
-        context.refresh();
+        //context.refresh();
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
