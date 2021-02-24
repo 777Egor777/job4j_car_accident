@@ -21,6 +21,11 @@
     <div class="row">
         <a class="btn btn-primary" href="<c:url value='/create'/>">Добавить инцидент</a>
     </div>
+    <br>
+    <div class="row">
+        <a class="btn btn-primary" href="<c:url value='/logout'/>">Выйти из системы</a>
+    </div>
+    <br>
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
